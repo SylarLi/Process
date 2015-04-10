@@ -12,7 +12,7 @@ public class TransformUtil
     /// <returns></returns>
     public static Vector2 Position3DZ22DY(Vector3 origin, float angle = 45)
     {
-        return new Vector3(origin.x, origin.y + origin.z * Mathf.Tan(angle * Mathf.PI / 180), 0);
+        return new Vector3(origin.x, origin.y + origin.z * Mathf.Tan((90 - angle) * Mathf.PI / 180), 0);
     }
 
     /// <summary>
