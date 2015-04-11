@@ -26,7 +26,7 @@ public class Transform3D22DExample : MonoBehaviour
     void Start()
     {
         mPosition = transform.position;
-        shadow = GameObject.Find("Shadow");
+        shadow = transform.Find("Shadow").gameObject;
     }
 
     private void FixedUpdate()
