@@ -12,4 +12,9 @@ public class CollisionDetecter : MonoBehaviour
     {
 	    
 	}
+
+    void OnTriggerEnter()
+    {
+
+    }
 }
