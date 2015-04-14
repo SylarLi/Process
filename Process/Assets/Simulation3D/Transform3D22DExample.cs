@@ -56,6 +56,14 @@ public class Transform3D22DExample : MonoBehaviour
                 localScale = new Vector3(-Mathf.Abs(localScale.x), 1, 1);
                 rigidbody2D.AddForce(new Vector2(-moveDrag, 0), ForceMode2D.Force);
             }
+            if (Input.GetKey(KeyCode.W))
+            {
+                rigidbody2D.AddForce(new Vector2(0, moveDrag), ForceMode2D.Force);
+            }
+            else if (Input.GetKey(KeyCode.S))
+            {
+                rigidbody2D.AddForce(new Vector2(0, -moveDrag), ForceMode2D.Force);
+            }
         }
     }
 
@@ -93,7 +101,7 @@ public class Transform3D22DExample : MonoBehaviour
             }
             if ((airTime -= Time.deltaTime) <= 0)
             {
-                rigidbody2D.velocity -= new Vector2(airSlideH * dirSpeedH, rigidbody2D.velocity.y);
+                rigidbody2D.velocity -= new Vector2(airSlideH * dirSpeedH, airSlideV * dirSpeedV - jumpStartSpeed);
                 rigidbody2D.drag = linearDrag;
                 position = new Vector3(position.x, position.y, 0);
                 airTime = 0;
@@ -108,8 +116,8 @@ public class Transform3D22DExample : MonoBehaviour
                 rigidbody2D.velocity = new Vector2(0, jumpStartSpeed);
                 rigidbody2D.drag = 0;
                 airTime = Mathf.Abs(jumpStartSpeed / gravity) * 2;
-                projectY = position.y;
             }
+            projectY = transform.position.y;
         }
         position = TransformUtil.Position2DY23DZ(transform.position, projectY);
         shadow.transform.position = new Vector3(position.x, position.y, 0);

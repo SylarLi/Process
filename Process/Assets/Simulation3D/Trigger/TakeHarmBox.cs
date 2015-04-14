@@ -1,22 +1,21 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(Collider2D))]
 public class TakeHarmBox : MonoBehaviour, ITakeHarmBox
 {
+    private long mid;
+
+    public long id
+    {
+        get { return mid; }
+        set { mid = value; }
+    }
+
     /// <summary>
     /// 触发时受到伤害区块的表现
     /// </summary>
-    public void Trigger()
+    public virtual void Trigger(ITriggerBox input)
     {
-
-    }
-
-    private void OnTriggerEnter2D(Collider2D collider)
-    {
-        HarmBox box = collider.GetComponent<HarmBox>();
-        if (box != null)
-        {
-            Trigger();
-        }
+        Debug.Log("I'm hurt!!!");
     }
 }

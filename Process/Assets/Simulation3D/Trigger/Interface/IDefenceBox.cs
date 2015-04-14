@@ -1,7 +1,7 @@
 ﻿/// <summary>
 /// 防御区块
 /// </summary>
-public interface IDefenceBox : ITriggerBox
+public interface IDefenceBox : ITakeHarmBox
 {
 
 }

@@ -11,16 +11,32 @@ public class ActionController : MonoBehaviour
 
     private void Update()
     {
-        animator.SetBool("fire", Input.GetKey(KeyCode.J));
+        FireState(Input.GetKey(KeyCode.J));
+        StabState(Input.GetKey(KeyCode.L));
     }
 
-    public void Fire()
+    public void FireState(bool state)
     {
-        GameObject bullet = GameObject.Instantiate(GameObject.Find("Bullet")) as GameObject;
+        animator.SetBool("fire", state);
+    }
+
+    public void StabState(bool state)
+    {
+        animator.SetBool("stab", state);
+    }
+
+    #region Animation Events
+
+    public void Fire(string bulletPath)
+    {
+        GameObject origin = transform.Find(bulletPath).gameObject;
+        GameObject bullet = GameObject.Instantiate(origin) as GameObject;
         bullet.SetActive(true);
         float dir = Mathf.Sign(transform.localScale.x);
-        bullet.transform.position = transform.position + new Vector3(dir * 0.85f, 0.5f, 0);
+        bullet.transform.position = origin.transform.position;
         bullet.rigidbody2D.AddForce(new Vector2(dir * 10, 0), ForceMode2D.Impulse);
         rigidbody2D.AddForce(new Vector2(-transform.localScale.x * 3, 0), ForceMode2D.Impulse);
     }
+
+    #endregion
 }
